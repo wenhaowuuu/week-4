@@ -112,7 +112,7 @@ var phillyBikeCrashesDataUrl = "https://raw.githubusercontent.com/CPLN690-MUSA61
 
 
 /* =====================
-  Initialize map
+ Leaflet setup - feel free to ignore this
 ===================== */
 
 var map = L.map('map', {
