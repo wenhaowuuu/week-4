@@ -19,7 +19,10 @@
   This recipe, can be used by underscore's _.filter. It will return only words with
    >=5 characters.
 ===================== */
-var isLengthOfFiveOrMore = function(str) {};
+var isLengthOfFiveOrMore = function(str) {
+  if (str.length>=5){return true;}
+  else {return false;}
+};
 
 console.log("isLengthOfFiveOrMore success:",
   _.isEqual(_.filter(['this', 'is','a', 'test', 'testing'], isLengthOfFiveOrMore), ['testing']));
@@ -30,15 +33,17 @@ console.log("isLengthOfFiveOrMore success:",
   function you write along with underscore's _.each to log the double of every
   number in the provided array.
 ===================== */
-var logDouble = function(num) {};
+var logDouble = function(num) {
+  console.log(num*2);
+};
 var theArray = [1, 5, 20, 100];
-
+_.each(theArray,logDouble);
 
 /* =====================
   Given this already defined function, define fizzbuzzArray so that, when mapped
   over, it will equal ['fizz', 'buzz', 'fizzbuzz'];
 ===================== */
-var fizzbuzzArray = [];
+var fizzbuzzArray = [3,5,15];
 var fizzbuzzFunc = function(num) {
   var str = '';
   if (num % 3 === 0) { str = 'fizz'; }
@@ -93,6 +98,18 @@ console.log("fizzbuzz success:",
 var phillySolarInstallationDataUrl = "https://raw.githubusercontent.com/CPLN692-MUSA611/datasets/master/json/philadelphia-solar-installations.json";
 var phillyCrimeDataUrl = "https://raw.githubusercontent.com/CPLN692-MUSA611/datasets/master/json/philadelphia-crime-snippet.json";
 var phillyBikeCrashesDataUrl = "https://raw.githubusercontent.com/CPLN692-MUSA611/datasets/master/json/philadelphia-bike-crashes-snippet.json";
+
+$.ajax(phillyBikeCrashesDataUrl).done(function(data){
+  var parseddata = JSON.parse(data);
+  console.log(parseddata);
+  _.each(parseddata,function(point){
+    var lon = point.LNG;
+    var lat = point.LAT;
+    var veh = point.VEHICLE_CO;
+    var style = {'radius':veh*5, 'fillColor':'#cc5000'};
+    L.circleMarker([lat,lon],style).addTo(map);
+  });
+});
 
 
 /* =====================

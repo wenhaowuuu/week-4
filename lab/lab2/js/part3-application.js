@@ -26,7 +26,9 @@
 /* =====================
   Define a resetMap function to remove markers from the map and clear the array of markers
 ===================== */
-var resetMap = function() {
+var resetMap = function(m) {
+  map.removeLayer(m);
+
   /* =====================
     Fill out this function definition
   ===================== */
@@ -37,7 +39,17 @@ var resetMap = function() {
   will be called as soon as the application starts. Be sure to parse your data once you've pulled
   it down!
 ===================== */
-var getAndParseData = function() {
+var phillyBikeCrashesDataUrl = "https://raw.githubusercontent.com/CPLN692-MUSA611/datasets/master/json/philadelphia-bike-crashes-snippet.json";
+
+var url = "https://raw.githubusercontent.com/CPLN692-MUSA611/datasets/master/json/philadelphia-bike-crashes-snippet.json";
+var getAndParseData = function(d) {
+  $.ajax(url).done(function(d){
+    var parseddata = JSON.parse(d);
+    console.log(parseddata);
+    return parseddata;
+  });
+
+
   /* =====================
     Fill out this function definition
   ===================== */
@@ -47,8 +59,30 @@ var getAndParseData = function() {
   Call our plotData function. It should plot all the markers that meet our criteria (whatever that
   criteria happens to be — that's entirely up to you)
 ===================== */
-var plotData = function() {
+var plotData = function(p) {
+  _.each(p,function(pt){
+    var lat = pt.LAT;
+    var lon = pt.LNG;
+    var veh = pt.VEHICLE_CO;
+    var style = {'radius':veh*5, 'fillColor':'#cc5400'};
+    L.circleMarker([lat,lon],style).addTo(map);
+  });
+
   /* =====================
     Fill out this function definition
   ===================== */
 };
+
+var filtered_data = [];
+var filtered_out = [];
+_.each(getAndParseData(),function(item1){
+  greaterthanmin = item1.VEHICLE_CO > numericField1;
+  filter_condition = greaterthanmin;
+  if (filter_condition) {
+    filtered_data.push(item1);
+  } else {filtered_out.push(item1);
+  }
+});
+
+console.log('Included:', filtered_data.length);
+console.log('Excluded:', filtered_out.length);

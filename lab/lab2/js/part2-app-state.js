@@ -33,10 +33,38 @@
 ===================== */
 
 // We set this to HTTP to prevent 'CORS' issues
-var downloadData = $.ajax("http://");
-var parseData = function() {};
-var makeMarkers = function() {};
-var plotMarkers = function() {};
+
+// $.ajax(phillyBikeCrashesDataUrl).done(function(data){
+//   var parseddata = JSON.parse(data);
+//   console.log(parseddata);
+//   _.each(parseddata,function(point){
+//     var lon = point.LNG;
+//     var lat = point.LAT;
+//     var veh = point.VEHICLE_CO;
+//     var style = {'radius':veh*5, 'fillColor':'#cc5000'};
+//     L.circleMarker([lat,lon],style).addTo(map);
+//   });
+// });
+var URL = "https://raw.githubusercontent.com/CPLN692-MUSA611/datasets/master/json/philadelphia-bike-crashes-snippet.json";
+var downloadData = $.ajax(URL).done(function(data){
+});
+
+var parseData = function(d) {
+  console.log(JSON.parse(d));
+  return JSON.parse(d);
+};
+
+var makeMarkers = function(p) {
+  var lat = p.LAT;
+  var lon = p.LNG;
+  var veh = p.VEHICLE_CO;
+  var style = {'radius':veh*5, 'fillColor':'#cc5000'};
+  return L.circleMarker([lat,lon],style);
+};
+
+var plotMarkers = function(m) {
+  m.addTo(map);
+};
 
 
 /* =====================
@@ -52,7 +80,9 @@ var plotMarkers = function() {};
   user's input.
 ===================== */
 
-var removeMarkers = function() {};
+var removeMarkers = function(markers) {
+  map.removeLayer(markers);
+};
 
 /* =====================
   Optional, stretch goal
@@ -61,10 +91,26 @@ var removeMarkers = function() {};
 
   Note: You can add or remove from the code at the bottom of this file.
 ===================== */
+var ManyVehicle = function(){
+  var filtered_data = [];
+  var filtered_out = [];
+  _.each(parseData(),function(item1){
+    greaterthanmin = item1.VEHICLE_CO > 3;
+    filter_condition = greaterthanmin;
+    if (filter_condition) {
+      filtered_data.push(item1);
+    } else {filtered_out.push(item1);
+    }
+  });
+return filtered_data;
+
+}
+
 
 /* =====================
  Leaflet setup - feel free to ignore this
 ===================== */
+
 
 var map = L.map('map', {
   center: [39.9522, -75.1639],
@@ -84,7 +130,8 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 
 downloadData.done(function(data) {
   var parsed = parseData(data);
-  var markers = makeMarkers(parsed);
+  var filterparsed = ManyVehicle(parsed);
+  var markers = makeMarkers(filterparsed);
   plotMarkers(markers);
   removeMarkers(markers);
 });

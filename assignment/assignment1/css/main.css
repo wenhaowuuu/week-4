@@ -25,3 +25,79 @@ body {
     overflow-y: auto;
     padding: 20px;
 }
+
+.heading {
+  font-size: 1.5em;
+  font-family:Arial;
+  font-weight:bold;
+}
+h3{
+  font-size:1em;
+
+}
+
+.whiteline{
+  background-color:#b2b2b2;
+  height:2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+
+#button {
+  float:right;
+  font-weight:bold;
+  font-size:0.8em;
+}
+#button1{
+  background-color: blue;
+  height:10px;
+  display:inline-block;
+}
+
+#inputname{
+
+
+}
+#inputgrade{
+
+
+}
+
+br1{
+  height:1em;
+}
+
+br2{
+  height:0.5em;
+
+}
+.name{
+  color:black;
+}
+
+.type{
+  color:grey;
+}
+
+.address{
+  font-size:0.7em;
+}
+
+.zipcode{
+  font-size:0.7em;
+}
+
+.box {
+  background-color:#DCDCDC;
+  padding:10px;
+  z-index:-50;
+  margin-top:10px;
+}
+
+ul{
+
+  margin-left:-40px;
+
+}
