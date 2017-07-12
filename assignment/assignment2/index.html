@@ -12,7 +12,6 @@
   </head>
   <body>
 
-
     <!-- =====================
 
     # Week 4 - Assignment 2, Extra Credit
@@ -84,6 +83,13 @@
                               <p id="green">watch the video</p></a>
                           </p>
                   </div>
+                  <div>
+                      <button class="1st button">Get started</button>
+                          <p>or <a href="https://mail.google.com/mail/u/0/">
+                              <p id="green">watch the video</p></a>
+                          </p>
+                  </div>
+
               </div>
 
               <div class="column-two-thirds">
@@ -91,6 +97,9 @@
                       <li>Pears</li>
                       <li>Plums</li>
                   </ul>
+                  <div id="map" class="map">
+
+                  </div>
               </div>
            </div>
         </div>
@@ -98,9 +107,9 @@
 
     <div class="container">
       <div class="row">
-        <div class="column-one-half">
+        <div class="column-one-third">
           <h5>
-            One-Half
+            One-Third
           </h5>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis
@@ -111,7 +120,20 @@
             felis.
           </p>
         </div>
-        <div class="column-one-half">
+        <div class="column-one-third">
+          <h5>
+            One-Third
+          </h5>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis
+            leo urna. Fusce maximus urna neque, ut accumsan quam semper sit
+            amet. Vestibulum ante ipsum primis in faucibus orci luctus et
+            ultrices posuere cubilia Curae; Morbi tempor, lectus et placerat
+            viverra, ipsum enim dictum sapien, eu condimentum nunc enim ut
+            felis.
+          </p>
+        </div>
+        <div class="column-one-third">
           <h5>
             One-Half
           </h5>
@@ -154,9 +176,35 @@
         </div>
       </div>
       <div class="row">
-        <div class="column-one-half">
+        <div class="column-one-quarter">
           <h5>
-            One-Half
+            One-Quarter
+          </h5>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis
+            leo urna. Fusce maximus urna neque, ut accumsan quam semper sit
+            amet. Vestibulum ante ipsum primis in faucibus orci luctus et
+            ultrices posuere cubilia Curae; Morbi tempor, lectus et placerat
+            viverra, ipsum enim dictum sapien, eu condimentum nunc enim ut
+            felis.
+          </p>
+        </div>
+        <div class="column-one-quarter">
+          <h5>
+            One-Quarter
+          </h5>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis
+            leo urna. Fusce maximus urna neque, ut accumsan quam semper sit
+            amet. Vestibulum ante ipsum primis in faucibus orci luctus et
+            ultrices posuere cubilia Curae; Morbi tempor, lectus et placerat
+            viverra, ipsum enim dictum sapien, eu condimentum nunc enim ut
+            felis.
+          </p>
+        </div>
+        <div class="column-one-quarter">
+          <h5>
+            One-Quarter
           </h5>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis
@@ -195,5 +243,21 @@
         </div>
       </div>
     </div>
+    <script>
+      //LOAD MAP1
+      var map1 = L.map('map1', {
+        center: [39.9522, -75.1639],
+        zoom: 14
+      });
+      var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
+	      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      	subdomains: 'abcd',
+      	minZoom: 0,
+      	maxZoom: 20,
+      	ext: 'png'
+      }).addTo(map1);
+
+
+    </script>
   </body>
 </html>
